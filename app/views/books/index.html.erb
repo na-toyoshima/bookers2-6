@@ -1,0 +1,13 @@
+<%= render 'users/common', book: @book %>
+
+<h1>Books#index</h1>
+<p>投稿された本のTitleとOpinionを作成</p>
+
+<ul>
+<% @books.each do |book| %>
+<li><%= book.title %></li>
+<li><%= book.body %></li>
+
+
+<% end %>
+</ul>
