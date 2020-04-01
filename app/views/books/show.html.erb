@@ -1,6 +1,25 @@
 <%= render 'users/usercommon'%>
 <%= render 'books/bookcommon', book: @book %>
-<h1>Books#show</h1>
-<p>投稿されたBook detailを表示</p>
-横には投稿者情報を表示
+<h1>Book detail</h1>
+<p></p>
+<table>
+	<thead>
+		<tr>
+			<th>ユーザ情報</th>
+			<th>book title</th>
+			<th>book opinion</th>
+			<th>Edit & Destroy</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>投稿ユーザの画像と名前</td>
+			<td><%= @book.title %></td>
+			<td><%= @book.body %></td>
+			<td>edit & destroy</td>
+		</tr>
+	</tbody>
+	</table>
+
 
