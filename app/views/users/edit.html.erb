@@ -1,8 +1,15 @@
-<%= render 'users/usercommon'%>
+<%= render 'users/usercommon', user: @user %>
 <%= render 'books/bookcommon', book: @book %>
 
 <h1>User info</h1>
 ユーザ情報の編集・更新
 Name,Image,Introductionを記載して更新する
 
-<%= link_to "Update User", users_path(@user)
+<%= form_for(@user) do |f| %>
+	Name
+	<%= f.text_field :name %>
+	Introduction
+	<%= f.text_field :introduction %>
+
+	<%= f.submit "変更を保存" %>
+<% end %>

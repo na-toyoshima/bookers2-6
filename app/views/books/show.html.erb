@@ -1,4 +1,12 @@
-<%= render 'users/usercommon'%>
+<% if flash[:notice] %>
+      <div>
+        <%= flash[:notice] %>
+      </div>
+<% end %>
+
+
+
+<%= render 'users/usercommon',user: @user %>
 <%= render 'books/bookcommon', book: @book %>
 <h1>Book detail</h1>
 <p></p>
@@ -15,9 +23,13 @@
 	<tbody>
 		<tr>
 			<td>投稿ユーザの画像と名前</td>
-			<td><%= @book.title %></td>
-			<td><%= @book.body %></td>
-			<td>edit & destroy</td>
+			<td><%= @book_detail.title %></td>
+			<td><%= @book_detail.body %></td>
+			<td><% if @user == current_user %>
+				<%= link_to"Edit", edit_book_path %> & <%= link_to"Delete", book_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
+					<% end %>
+				</td>
+
 		</tr>
 	</tbody>
 	</table>

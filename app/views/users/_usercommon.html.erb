@@ -1,5 +1,7 @@
 <h1>User info</h1>
-ユーザーのimage,name,introductionを表示<br>
-基本はログインしているユーザーの情報、他ユーザーの詳細画面に行った際は他ユーザーの内容が表示される<br><br>
 
-user.nameで表示されない。
+<strong>Name</strong><br>
+<%= user.name %><br>
+<strong>Introduction</strong><br>
+<%= user.introduction %><br>
+<%= link_to "edit User info",edit_user_path(current_user)%>
