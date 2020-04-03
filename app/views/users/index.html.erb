@@ -1,27 +1,34 @@
-<%= render 'users/usercommon',user: @user %>
-<%= render 'books/bookcommon', book: @book %>
+<div class = "container">
+	<div class = "row">
+		<div class = "col-xs-3">
+			<%= render 'users/usercommon', user: @user %>
+			<%= render 'books/bookcommon', book: @book %>
+		</div>
 
-<h1>Users</h1>
-登録ユーザー一覧を表示
+		<div class = "col-xs-9">
+			<h1>Users</h1>
 
 
-<table>
-	<thead>
-		<tr>
-		<th>image</th>
-		<th>name</th>
-		<th></th>
-		</tr>
-	</thead>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+					<th>image</th>
+					<th>name</th>
+					<th></th>
+					</tr>
+				</thead>
 
-	<tbody>
-		<tr>
-			<% @users.each do |user| %>
+				<tbody>
+					<tr>
+						<% @users.each do |user| %>
 
-			<td><%= user.name %></td>
-			<td><%= user.name %></td>
-			<td><%= link_to "Show", user_path(user.id) %></td>
-		</tr>
-	</tbody>
-	<% end %>
-</table>
+						<td><%= user.name %>(imageに差し替え)</td>
+						<td><%= user.name %></td>
+						<td><%= link_to "Show", user_path(user.id) %></td>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>

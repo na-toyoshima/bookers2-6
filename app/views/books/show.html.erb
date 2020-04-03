@@ -1,37 +1,45 @@
-<% if flash[:notice] %>
+
+<div class = "container">
+	<% if flash[:notice] %>
       <div>
         <%= flash[:notice] %>
       </div>
-<% end %>
+	<% end %>
 
+	<div class = "row">
+		<div class = "col-xs-3">
+			<%= render 'users/usercommon', user: @user %>
+			<%= render 'books/bookcommon', book: @book %>
+		</div>
 
+		<div class = "col-xs-9">
+			<h1>Book detail</h1>
+			<p></p>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ユーザ情報</th>
+						<th>タイトル</th>
+						<th>感想</th>
+						<th></th>
+					</tr>
+				</thead>
 
-<%= render 'users/usercommon',user: @user %>
-<%= render 'books/bookcommon', book: @book %>
-<h1>Book detail</h1>
-<p></p>
-<table>
-	<thead>
-		<tr>
-			<th>ユーザ情報</th>
-			<th>book title</th>
-			<th>book opinion</th>
-			<th>Edit & Destroy</th>
-		</tr>
-	</thead>
+				<tbody>
+					<tr>
+						<td>投稿ユーザの画像と名前</td>
+						<td><%= @book_detail.title %></td>
+						<td><%= @book_detail.body %></td>
+						<td><% if @user == current_user %>
+							<%= link_to"Edit", edit_book_path %> & <%= link_to"Delete", book_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
+								<% end %>
+						</td>
 
-	<tbody>
-		<tr>
-			<td>投稿ユーザの画像と名前</td>
-			<td><%= @book_detail.title %></td>
-			<td><%= @book_detail.body %></td>
-			<td><% if @user == current_user %>
-				<%= link_to"Edit", edit_book_path %> & <%= link_to"Delete", book_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
-					<% end %>
-				</td>
-
-		</tr>
-	</tbody>
-	</table>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
 
 
