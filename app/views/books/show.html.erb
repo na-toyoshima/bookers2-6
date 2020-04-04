@@ -1,4 +1,4 @@
-
+<br><br>
 <div class = "container">
 	<% if flash[:notice] %>
       <div>
@@ -32,8 +32,9 @@
 						<td><<%= @book_detail.title %></td>
 						<td><%= @book_detail.body %></td>
 						<td><% if @user == current_user %>
-							<div class="btn-sm btn-success"><%= link_to"Edit", edit_book_path %></div></td>
-						<td><div class ="btn-sm btn-danger"><%= link_to"Delete", book_path, method: :delete, "data-confirm" => "本当に削除しますか？" %></div></td>
+							<%= link_to"Edit", edit_book_path, class: "btn-sm btn-success" %>
+						</td>
+						<td><%= link_to"Destroy", book_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger"%></td>
 								<% end %>
 						
 

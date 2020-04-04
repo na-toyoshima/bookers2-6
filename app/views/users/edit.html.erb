@@ -1,7 +1,7 @@
 <br>
 <br>
 <% if @user.errors.any? %>
-        <%= @user.errors.count %>Introduction is too long (maximum is 50 characters)
+        <%= @user.errors.count %>error prohibited this obj from being saved:
         <% @user.errors.full_messages.each do |message| %>
             <%= message %>
         <% end %>
@@ -15,7 +15,8 @@
 			<%= form_for(@user) do |f| %>
 				<strong>Name</strong>
 				<%= f.text_field :name %><br>
-				<strong>Image</strong><br>
+				<strong>Image</strong>
+				<%= f.attachment_field :profile_image %><br>
 				<strong>Introduction</strong>
 				<%= f.text_area :introduction %><br><br>
 
