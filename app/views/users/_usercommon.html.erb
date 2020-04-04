@@ -4,4 +4,6 @@
 <%= user.name %><br>
 <strong>Introduction</strong><br>
 <%= user.introduction %><br>
-<%= link_to "edit User info",edit_user_path(current_user)%>
+<%= link_to edit_user_path(current_user), method: :get do %>
+<span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" aria-hidden="true"></span>
+<% end %>

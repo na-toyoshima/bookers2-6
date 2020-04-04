@@ -10,16 +10,16 @@
   </head>
 
     <body>
-        <header class="navbar navbar-fixed-top">
-            <div class="container2">
+        <header class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container">
                 <nav class="nav navbar-nav navbar-left">
                     <span> Bookers </span>
                 </nav>
                 <nav>
                     <ul class= "nav navbar-nav navbar-right">
                         <% if user_signed_in? %>
-                        <li><span class="glyphicon glyphicon-home" aria-hidden="true">
-                            <%= link_to "Home", user_path(current_user) %></span>
+                        <li>
+                            <%= link_to "Home", user_path(current_user), class: "glyphicon glyphicon-home" %>
                         </li>
                         
                         <li><span class="glyphicon glyphicon-user" aria-hidden="true">
@@ -35,8 +35,8 @@
                         </li>
                         <% else %>
                         
-                        <li><span class="glyphicon glyphicon-home" aria-hidden="true">
-                            <%= link_to "Home", root_path %></span>
+                        <li>
+                            <%= link_to "Home", root_path, class: "glyphicon glyphicon-home" %>
                         </li>
                         <li><span class="glyphicon glyphicon-link" aria-hidden="true">
                             <%= link_to "About", home_about_path %></span>
@@ -54,6 +54,8 @@
                 </nav>
             </div>
         </header>
+        <br>
+        <br>
     </body>
     
     <%= yield %>

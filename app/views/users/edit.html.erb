@@ -1,3 +1,5 @@
+<br>
+<br>
 <% if @user.errors.any? %>
         <%= @user.errors.count %>Introduction is too long (maximum is 50 characters)
         <% @user.errors.full_messages.each do |message| %>
@@ -5,15 +7,20 @@
         <% end %>
         <% end %>
 
-<h1>User info</h1>
-ユーザ情報の編集・更新
-Name,Image,Introductionを記載して更新する
+<div class="container">
+	<div class="row">
+		<div class ="col-xs-12">
+			<h1>User info</h1>
 
-<%= form_for(@user) do |f| %>
-	Name
-	<%= f.text_field :name %>
-	Introduction
-	<%= f.text_field :introduction %>
+			<%= form_for(@user) do |f| %>
+				<strong>Name</strong>
+				<%= f.text_field :name %><br>
+				<strong>Image</strong><br>
+				<strong>Introduction</strong>
+				<%= f.text_area :introduction %><br><br>
 
-	<%= f.submit "変更を保存" %>
-<% end %>
+				<%= f.submit "Update User" %>
+			<% end %>
+		</div>
+	</div>
+</div>

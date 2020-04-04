@@ -18,9 +18,10 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>ユーザ情報</th>
-						<th>タイトル</th>
-						<th>感想</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
 						<th></th>
 					</tr>
 				</thead>
@@ -28,12 +29,13 @@
 				<tbody>
 					<tr>
 						<td>投稿ユーザの画像と名前</td>
-						<td><%= @book_detail.title %></td>
+						<td><<%= @book_detail.title %></td>
 						<td><%= @book_detail.body %></td>
 						<td><% if @user == current_user %>
-							<%= link_to"Edit", edit_book_path %> & <%= link_to"Delete", book_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
+							<div class="btn-sm btn-success"><%= link_to"Edit", edit_book_path %></div></td>
+						<td><div class ="btn-sm btn-danger"><%= link_to"Delete", book_path, method: :delete, "data-confirm" => "本当に削除しますか？" %></div></td>
 								<% end %>
-						</td>
+						
 
 					</tr>
 				</tbody>
