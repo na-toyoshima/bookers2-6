@@ -1,10 +1,33 @@
 <h1>User info</h1>
 
-<%= attachment_image_tag user, :profile_image, size:"100x100", fallback:"no_image.png", format:'png' %><br>
-<strong>Name</strong><br>
-<%= user.name %><br>
-<strong>Introduction</strong><br>
-<%= user.introduction %><br>
-<%= link_to edit_user_path(current_user), method: :get do %>
-<span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" aria-hidden="true"></span>
-<% end %>
+<%= attachment_image_tag user, :profile_image, size:"100x100", fallback:"no_image.png", format:'png' %>
+
+<table class="table condensed">
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+
+		<tbody>
+			<tr>
+				<td><strong>Name</strong></td>
+				<td><%= user.name %></td>
+			</tr>
+
+			<tr>
+				<td><strong>Introduction</strong></td>
+				<td><%= user.introduction %><br></td>
+			</tr>
+		</tbody>
+</table>
+		<% if @user == current_user %>
+			<%= link_to edit_user_path(current_user), method: :get do %>
+			<span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			<% end %>
+			<% else %>
+			<%= link_to user_path(current_user), method: :get do %>
+			<span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			<% end %>
+		<% end %>
