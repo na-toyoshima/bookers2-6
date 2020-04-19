@@ -56,11 +56,13 @@
 
 				<tbody>
 					<tr>
-						<% @book_comments.each do |comment| %>
+						<% @book_detail.book_comments.each do |comment| %>
 							<td><%= comment.user.name %></td>
 							<td><%= comment.comment %></td>
-							<% if %>
-							<!-- <td><%= link_to "削除", book_book_comments_path(:book_id), method: :delete %> -->
+
+							<td><% if comment.user_id == current_user.id%>
+							<%= link_to "削除", book_book_comments_path(book_id: @book_detail, id: comment), method: :delete, "data-confirm" => "Are you sure?" %></td>
+							<% end %>
 					</tr>
 				</tbody>
 				<% end %>

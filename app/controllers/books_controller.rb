@@ -14,7 +14,6 @@ class BooksController < ApplicationController
     @book = Book.new
     @book_comment = BookComment.new
     @book_comments = BookComment.all
-    @comment = BookComment.find(params[:])
   end
 
   def edit
