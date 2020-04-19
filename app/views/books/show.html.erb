@@ -33,19 +33,57 @@
 						</td>
 						<td><%= link_to @book_detail.title, book_path %></td>
 						<td><%= @book_detail.body %></td>
-						
+						<td>いいね数</td>
+						<td>コメント数:<%= @book_detail.book_comments.count %></td>
+
 						<td><% if @user == current_user %>
 							<%= link_to"Edit", edit_book_path, class: "btn-sm btn-success" %>
 						</td>
 						<td><%= link_to"Destroy", book_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger"%></td>
 								<% end %>
-						
-
 					</tr>
 				</tbody>
 			</table>
+
+			<table class="table table">
+				<thead>
+					<tr>
+						<th>コメント者</th>
+						<th>コメント内容</th>
+						<th>削除ボタン</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<% @book_comments.each do |comment| %>
+							<td><%= comment.user.name %></td>
+							<td><%= comment.comment %></td>
+							<% if %>
+							<!-- <td><%= link_to "削除", book_book_comments_path(:book_id), method: :delete %> -->
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+
+
+			<!-- コメント投稿時のエラーメッセージ用
+			<% if @user.errors.any? %>
+        <%= @user.errors.count %>error prohibited this obj from being saved:
+        <% @user.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+        <% end %> -->
+
+			<%= form_for [@book_detail, @book_comment] do |f| %>
+			<div class ="row">
+				<div class = "col-xs-12">
+					<%= f.text_area :comment %>
+				</div>
+			</div>
+			<%= f.submit "送信" %>
+			<% end %>
+
 		</div>
 	</div>
 </div>
-
-
