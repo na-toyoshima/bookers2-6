@@ -34,25 +34,8 @@
 						<td><%= link_to @book_detail.title, book_path %></td>
 						<td><%= @book_detail.body %></td>
 						<td><!-- いいね機能 -->
-							<% if @book_detail.favorited_by?(current_user) %>
-									<%= link_to book_favorites_path(@book_detail), method: :delete do %>
-									<i class="fa fa-heart" aria-hidden="true" style="color: red;">❤︎</i>
-									<%= @book_detail.favorites.count %>
-									<% end %>
-								<% else %>
-									<%= link_to book_favorites_path(@book_detail), method: :post do %>
-									<i class="fa fa-heart-o" aria-hidden="true">♡</i>
-									<%= @book_detail.favorites.count %>
-									<% end %>
-							<% end %>
-
-
-
-
-
-
-
-
+							<div id= "favorites_buttons_<%= @book_detail.id %>">
+									<%= render 'favorites/favorite', book: @book_detail %></div>
 
 						</td>
 						<td>コメント数:<%= @book_detail.book_comments.count %></td>
@@ -60,7 +43,7 @@
 						<td><% if @user == current_user %>
 							<%= link_to"Edit", edit_book_path, class: "btn-sm btn-success" %>
 						</td>
-						<td><%= link_to"Destroy", book_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger"%></td>
+						<td><%= link_to"Destroy", book_path, method: :delete, remote: true, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger"%></td>
 								<% end %>
 					</tr>
 				</tbody>
@@ -74,22 +57,15 @@
 						<th>削除ボタン</th>
 					</tr>
 				</thead>
+				<tbody><div id= "comments<%= @book_detail.id %>">
+						<% @book_detail.book_comments.each do |c|%>
+							<%= render partial:'book_comments/comment_index',locals: { comment: c } %></div>
+							<%#= render partial:'book_comments/comment', collection: @book_detail.book_comments, as:"comment" %></div>
+						<% end %>
 
-				<tbody>
-					<tr>
-						<% @book_detail.book_comments.each do |comment| %>
-							<td><%= comment.user.name %></td>
-							<td><%= comment.comment %></td>
-
-							<td><% if comment.user_id == current_user.id%>
-							<%= link_to "削除", book_book_comments_path(book_id: @book_detail, id: comment), method: :delete, "data-confirm" => "Are you sure?" %></td>
-							<% end %>
-					</tr>
 				</tbody>
-				<% end %>
+
 			</table>
-
-
 			<!-- コメント投稿時のエラーメッセージ用
 			<% if @user.errors.any? %>
         <%= @user.errors.count %>error prohibited this obj from being saved:
@@ -98,14 +74,10 @@
         <% end %>
         <% end %> -->
 
-			<%= form_for [@book_detail, @book_comment] do |f| %>
-			<div class ="row">
-				<div class = "col-xs-12">
-					<%= f.text_area :comment %>
-				</div>
-			</div>
-			<%= f.submit "送信" %>
-			<% end %>
+
+			<div id="comment_form">
+			<%= render partial: 'book_comments/comment_form'%></div>
+			
 
 		</div>
 	</div>
