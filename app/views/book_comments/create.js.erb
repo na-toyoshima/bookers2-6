@@ -1,1 +1,4 @@
 $('table tr:last').after("<%= j(render partial: 'book_comments/comment_index', locals: {comment: @comment}) %>");
+
+
+$("textarea").val("");
